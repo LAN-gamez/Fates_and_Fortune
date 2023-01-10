@@ -9,7 +9,7 @@ public class GameRoom : MonoBehaviour
     public Participant Host { get; set; }
     public List<Participant> Participants { get; set; }
 
-    public string[] PawnColors = [
+    public string[] PawnColors = {
         "Red",
         "Orange",
         "Yellow",
@@ -18,22 +18,22 @@ public class GameRoom : MonoBehaviour
         "Purple",
         "Black",
         "White",
-    ];
+    };
 
 
 
-    public void AddParticipant(string Name)
+    public void AddParticipant(string name)
     {
-        List<string> availableColors;
+        List<string> availableColors = new List<string>();
         foreach (string color in PawnColors)
         {
             availableColors.Add(color);
         }
         foreach (var participant in Participants)
         {
-            availableColors.Remove(participant.Color);
+            availableColors.Remove(participant.PawnColor);
         }
-        Participants.Add(new Participant(Name, availableColors[0]));
+        Participants.Add(new Participant(name, availableColors[0]));
     }
 
     public void RemoveParticipant(string Name)
@@ -45,7 +45,6 @@ public class GameRoom : MonoBehaviour
         }
     }
 
-    public void 
 
     // Start is called before the first frame update
     void Start()
@@ -69,9 +68,9 @@ public class Participant
     public string Name { get; set; }
     public string PawnColor { get; set; }
 
-    public Participant(string Name, string PawnColor)
+    public Participant(string name, string pawnColor)
     {
-        Name = Name;
-        PawnColor = PawnColor;
+        Name = name;
+        PawnColor = pawnColor;
     }
 }
